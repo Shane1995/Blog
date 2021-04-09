@@ -4,3 +4,15 @@ deploy:
   kubectl:
     manifests:
       - ./infrastructure/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: shanelinden/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
